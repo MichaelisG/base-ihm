@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.page {
+    width: 75%;
+    margin: auto; 
+}
+
+.full-width {
+    width: 100%;
+}
+
+.space-between {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.crud-form {
+    margin: 10px;
+}
+
+.align-right {
+    display: flex;
+    align-items: baseline;
+    justify-content: end;
+    gap: 5px;
+}
