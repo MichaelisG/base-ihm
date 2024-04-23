@@ -1,1 +1,17 @@
-<p>update-role works!</p>
+<form [formGroup]="updateRoleForm" class="crud-form">
+    <h3>Update Role</h3>
+    <mat-form-field class="full-width">
+        <mat-label> Name </mat-label>
+        <input matInput formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+        <mat-label> Alias </mat-label>
+        <input matInput formControlName="alias">
+    </mat-form-field>
+
+    <div class="align-right">
+        <button mat-button color="accent" (click)="onCancel()"> Cancel </button>
+        <button mat-button color="primary" (click)="onUpdate()" [disabled]="updateRoleForm.invalid"> Update </button>    
+    </div>
+</form>

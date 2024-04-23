@@ -1,7 +1,5 @@
-<p>new-role works!</p>
-
 <form [formGroup]="newRoleForm" class="crud-form">
-
+    <h3>New Role</h3>
     <mat-form-field class="full-width">
         <mat-label> Name </mat-label>
         <input matInput formControlName="name">
@@ -17,4 +15,3 @@
         <button mat-button color="primary" (click)="onCreate()" [disabled]="newRoleForm.invalid"> Create </button>    
     </div>
 </form>
-

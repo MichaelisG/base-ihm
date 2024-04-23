@@ -12,11 +12,13 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { debounceTime } from 'rxjs';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { catchError, debounceTime, of } from 'rxjs';
 import { NgFor, NgIf } from '@angular/common';
 import { NewRoleComponent } from './new-role/new-role.component';
 import { Role } from '../../models/role.model';
 import { DeleteRoleComponent } from './delete-role/delete-role.component';
+import { UpdateRoleComponent } from './update-role/update-role.component';
 
 @Component({
   selector: 'app-roles',
@@ -33,6 +35,7 @@ import { DeleteRoleComponent } from './delete-role/delete-role.component';
     MatSlideToggleModule,
     MatSortModule,
     MatTableModule,
+    MatSnackBarModule,
     NgIf,
     NgFor,
   ],
@@ -42,7 +45,7 @@ import { DeleteRoleComponent } from './delete-role/delete-role.component';
 export class RolesComponent implements OnInit {
 
   public roleFilterForm: FormGroup = this.fb.group({
-     filter: [],
+    filter: [],
   });
   public displayedColumns = [
     'id',
@@ -59,7 +62,8 @@ export class RolesComponent implements OnInit {
     private readonly roleService: RoleService,
     private readonly fb: FormBuilder,
     private dialog: MatDialog,
-  ) {}
+    private snack: MatSnackBar,
+  ) { }
 
   ngOnInit(): void {
     this.refreshTable();
@@ -82,11 +86,11 @@ export class RolesComponent implements OnInit {
 
   onUpdateFilter() {
     this.roleFilterForm.get('filter')?.valueChanges
-    .pipe(
-      debounceTime(250),
-    ).subscribe(filter => {
-      this.roles.filter = filter;
-    });
+      .pipe(
+        debounceTime(250),
+      ).subscribe(filter => {
+        this.roles.filter = filter;
+      });
   }
 
   onNew() {
@@ -95,23 +99,38 @@ export class RolesComponent implements OnInit {
     newDialog.afterClosed().subscribe(
       role => {
         if (role !== null) {
-          this.roleService.new(role).subscribe(role => {
-            this.refreshTable();
-          });
+          this.roleService.new(role)
+            .pipe(
+              catchError((res) => {
+                this.snack.open(`Error creating role '${role.name}': ${res.error.detail}`, 'Dismiss');
+                return of();
+              }),
+            ).subscribe(role => {
+              this.snack.open(`Role ${role.name} created`, 'Ok', { duration: 2000 });
+              this.refreshTable();
+            });
         }
-      } 
+      }
     );
   }
 
   onDelete(role: Role) {
     const deleteDialog = this.dialog.open(
       DeleteRoleComponent,
-      {data: role},
+      { data: role },
     );
 
     deleteDialog.afterClosed().subscribe(res => {
       if (res === true) {
-        this.roleService.delete(role).subscribe(_ => {
+        this.roleService.delete(role).pipe(
+          catchError((res) => {
+            this.snack.open(
+              `Error deleting role '${role.name}': ${res.error.detail}`,
+              'Dismiss'
+            );
+            return of();
+          })
+        ).subscribe(_ => {
           this.refreshTable();
         });
       }
@@ -119,7 +138,27 @@ export class RolesComponent implements OnInit {
   }
 
   onUpdate(role: Role) {
-    
+    const updateDialog = this.dialog.open(
+      UpdateRoleComponent,
+      {data: role},
+    );
+
+    updateDialog.afterClosed().subscribe(
+      role => {
+        if (role !== null) {
+          this.roleService.update(role)
+            .pipe(
+              catchError((res) => {
+                this.snack.open(`Error updating role '${role.name}': ${res.error.detail}`, 'Dismiss');
+                return of();
+              }),
+            ).subscribe(role => {
+              this.snack.open(`Role ${role.name} updated`, 'Ok', { duration: 2000 });
+              this.refreshTable();
+            });
+        }
+      }
+    );
   }
 
 }
