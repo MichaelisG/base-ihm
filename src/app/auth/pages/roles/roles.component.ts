@@ -99,16 +99,16 @@ export class RolesComponent implements OnInit {
     newDialog.afterClosed().subscribe(
       role => {
         if (role !== null) {
-          this.roleService.new(role)
-            .pipe(
-              catchError((res) => {
-                this.snack.open(`Error creating role '${role.name}': ${res.error.detail}`, 'Dismiss');
-                return of();
-              }),
-            ).subscribe(role => {
-              this.snack.open(`Role ${role.name} created`, 'Ok', { duration: 2000 });
-              this.refreshTable();
-            });
+          // this.roleService.new(role)
+          //   .pipe(
+          //     catchError((res) => {
+          //       this.snack.open(`Error creating role '${role.name}': ${res.error.detail}`, 'Dismiss');
+          //       return of();
+          //     }),
+          //   ).subscribe(role => {
+          //     this.snack.open(`Role ${role.name} created`, 'Ok', { duration: 2000 });
+          //     this.refreshTable();
+          //   });
         }
       }
     );

@@ -20,6 +20,8 @@ import { MatTableModule } from '@angular/material/table';
   imports: [
     CommonModule,
     AuthRoutingModule,
+  ],
+  providers: [
     ReactiveFormsModule,
     MatInputModule,
     MatFormFieldModule,
