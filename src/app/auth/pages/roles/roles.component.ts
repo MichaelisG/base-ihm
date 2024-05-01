@@ -109,6 +109,7 @@ export class RolesComponent implements OnInit {
           //     this.snack.open(`Role ${role.name} created`, 'Ok', { duration: 2000 });
           //     this.refreshTable();
           //   });
+          this.refreshTable();
         }
       }
     );

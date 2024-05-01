@@ -28,3 +28,20 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     justify-content: end;
     gap: 5px;
 }
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.comment {
+    font-weight: 100;
+    font-size: medium;
+    font-style: italic;
+}
+
+.mat-column-actions {
+    width: 170px;
+    align-items: baseline;
+    justify-content: end;
+    gap: 5px;
+}

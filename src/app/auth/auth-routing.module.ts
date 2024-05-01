@@ -4,7 +4,8 @@ import { RolesComponent } from './pages/roles/roles.component';
 import { GroupsComponent } from './pages/groups/groups.component';
 
 const routes: Routes = [
-  { 'path': '', component: RolesComponent },
+  { 'path': '', redirectTo: 'roles', pathMatch: 'full' },
+  { 'path': 'roles', component: RolesComponent },
   { 'path': 'groups', component: GroupsComponent },
 ];
 

@@ -1,6 +1,10 @@
 <div class="page">
     <h3 class="space-between">
-        Role Administration
+        <span>Role Administration 
+          <span class="comment">
+            ({{ roles.data.length }} role<ng-container *ngIf="roles.data.length > 1">s</ng-container>)
+          </span>
+        </span>
         <button mat-raised-button color="primary" (click)="onNew()"> New </button>
     </h3>
     <form [formGroup]="roleFilterForm">
