@@ -8,14 +8,6 @@ import { Role } from '../../../models/role.model';
 
 @Component({
   selector: 'app-update-role',
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatDialogModule,
-  ],
   templateUrl: './update-role.component.html',
   styleUrl: './update-role.component.css'
 })

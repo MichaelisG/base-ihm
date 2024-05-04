@@ -22,23 +22,6 @@ import { UpdateRoleComponent } from './update-role/update-role.component';
 
 @Component({
   selector: 'app-roles',
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatIconModule,
-    MatPaginatorModule,
-    MatSelectModule,
-    MatSlideToggleModule,
-    MatSortModule,
-    MatTableModule,
-    MatSnackBarModule,
-    NgIf,
-    NgFor,
-  ],
   templateUrl: './roles.component.html',
   styleUrl: './roles.component.css'
 })

@@ -8,14 +8,6 @@ import { Role } from '../../../models/role.model';
 
 @Component({
   selector: 'app-delete-role',
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatDialogModule,
-  ],
   templateUrl: './delete-role.component.html',
   styleUrl: './delete-role.component.css'
 })

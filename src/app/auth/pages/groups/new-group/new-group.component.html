@@ -1,0 +1,42 @@
+<form [formGroup]="newGroupForm" class="crud-form">
+  <h3>New Group</h3>
+  <mat-form-field class="full-width">
+      <mat-label> Name </mat-label>
+      <input matInput formControlName="name">
+      <mat-error *ngIf="errorMessage">{{ errorMessage }}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+      <mat-label> Alias </mat-label>
+      <input matInput formControlName="alias">
+  </mat-form-field>
+
+  <!-- <mat-form-field class="example-chip-list">
+    <mat-label>Favorite Fruits</mat-label>
+    <mat-chip-grid #chipGrid aria-label="Fruit selection">
+      @for (role of roles; track role.id) {
+        <mat-chip-row (removed)="remove(role.id)">
+          {{role.name}}
+          <button matChipRemove [attr.aria-label]="'remove ' + role">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+      }
+    </mat-chip-grid>
+    <input placeholder="New role..." #fruitInput [formControl]="roleCtrl"
+      [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      (matChipInputTokenEnd)="add($event)"/>
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+      @for (role of filteredRoles | async; track role.id) {
+        <mat-option [value]="role.id">{{role.name}}</mat-option>
+      }
+    </mat-autocomplete>
+  </mat-form-field> -->
+
+  <div class="align-right">
+      <button mat-button color="accent" (click)="onCancel()"> Cancel </button>
+      <button mat-button color="primary" (click)="onCreate()" [disabled]="newGroupForm.invalid"> Create </button>    
+  </div>
+</form>
+<mat-error *ngIf="errorMessage">{{errorMessage}}</mat-error>

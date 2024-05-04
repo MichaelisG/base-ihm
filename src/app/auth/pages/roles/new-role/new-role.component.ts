@@ -10,15 +10,6 @@ import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-new-role',
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatDialogModule,
-    NgIf,
-  ],
   templateUrl: './new-role.component.html',
   styleUrl: './new-role.component.css'
 })

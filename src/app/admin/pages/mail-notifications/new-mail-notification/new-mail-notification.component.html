@@ -1,0 +1,39 @@
+<form [formGroup]="newMailNotificationForm" class="crud-form">
+  <h3>New Mail Notification</h3>
+  <mat-form-field class="full-width">
+      <mat-label> Code </mat-label>
+      <input matInput formControlName="code">
+      <mat-error *ngIf="errorMessage">{{ errorMessage }}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+      <mat-label> Subject </mat-label>
+      <input matInput formControlName="subject">
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <mat-label> To </mat-label>
+    <textarea matInput formControlName="mailTo"></textarea>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <mat-label> Cc </mat-label>
+    <textarea matInput formControlName="mailCc"></textarea>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <mat-label> Text </mat-label>
+    <textarea matInput formControlName="text"></textarea>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <mat-label> Html </mat-label>
+    <textarea matInput formControlName="html"></textarea>
+  </mat-form-field>
+
+  <div class="align-right">
+      <button mat-button color="accent" (click)="onCancel()"> Cancel </button>
+      <button mat-button color="primary" (click)="onCreate()" [disabled]="newMailNotificationForm.invalid"> Create </button>    
+  </div>
+</form>
+<mat-error *ngIf="errorMessage">{{errorMessage}}</mat-error>
